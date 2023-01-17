@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/charactersFragment">
+    <fragment
+        android:id="@+id/charactersFragment"
+        android:name="com.example.android.networkconnect.presentation.character.CharactersFragment"
+        android:label="CharactersFragment"
+        tools:layout="@layout/fragment_characters">
+        <action
+            android:id="@+id/action_charactersFragment_to_characterFilterBottomSheet"
+            app:destination="@id/characterFilterBottomSheet" />
+        <argument
+            android:name="backFromBottomSheet"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="status"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+        <argument
+            android:name="species"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+        <argument
+            android:name="gender"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+    </fragment>
+    <dialog
+        android:id="@+id/characterFilterBottomSheet"
+        android:name="com.example.android.networkconnect.presentation.character.CharacterFilterBottomSheet"
+        android:label="character_filter_bottom_sheet"
+        tools:layout="@layout/character_filter_bottom_sheet" >
+        <action
+            android:id="@+id/action_characterFilterBottomSheet_to_charactersFragment"
+            app:destination="@id/charactersFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/episodesFragment"
+        android:name="com.example.android.networkconnect.presentation.episode.EpisodesFragment"
+        android:label="fragment_episodes"
+        tools:layout="@layout/fragment_episodes" >
+        <action
+            android:id="@+id/action_episodesFragment_to_episodeDetailFragment"
+            app:destination="@id/episodeDetailFragment"
+            app:popUpTo="@id/episodeDetailFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/episodeDetailFragment"
+        android:name="com.example.android.networkconnect.presentation.episode_detail.EpisodeDetailFragment"
+        android:label="fragment_episode_detail"
+        tools:layout="@layout/fragment_episode_detail" >
+        <argument
+            android:name="episode"
+            app:argType="com.example.android.networkconnect.support.uimodel.EpisodeUIModel" />
+        <action
+            android:id="@+id/action_episodeDetailFragment_to_episodesFragment"
+            app:destination="@id/episodesFragment"
+            app:popUpTo="@id/episodeDetailFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
